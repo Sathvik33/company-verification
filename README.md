@@ -1,68 +1,69 @@
-Company Registration & Verification Module
-1. Project Overview
-The Company Registration & Verification Module is a comprehensive full-stack web application designed to provide a seamless and secure platform for companies to register, manage their profiles, and for administrators to verify them. This application features a complete user authentication system, multi-company profile management for each user, and integration with modern cloud services for authentication and file storage.
+# Company Registration & Verification Module
 
-The frontend is built with React, offering a dynamic and responsive user experience, while the backend is powered by Node.js and Express, providing a robust and secure REST API. The entire system is designed to be scalable, maintainable, and ready for future feature enhancements.
+A full-stack web application for seamless and secure **company registration, profile management, and admin verification**.
 
-2. Tech Stack
-This project utilizes a modern and powerful tech stack for both the frontend and backend.
+---
 
-Frontend
-Framework: React 18+ (with Vite)
+## 🚀 Project Overview
+This application provides:
 
-State Management: Redux Toolkit
+- **User Authentication** (Firebase + JWT)
+- **Multi-Company Profile Management**
+- **Admin Verification Workflow**
+- **Cloud-based File Storage** for company logos/banners
 
-UI Library: Material-UI (MUI)
+Frontend is built with **React (Vite)** for a dynamic UI, and the backend uses **Node.js + Express** with a **PostgreSQL** database.  
+The system is scalable, maintainable, and ready for future enhancements.
 
-Form Management: React Hook Form
+---
 
-API Communication: Axios
+## 🛠️ Tech Stack
 
-Routing: React Router DOM
+### Frontend
+- **Framework:** React 18+ (Vite)
+- **State Management:** Redux Toolkit
+- **UI Library:** Material-UI (MUI)
+- **Forms:** React Hook Form
+- **API Calls:** Axios
+- **Routing:** React Router DOM
+- **Notifications:** React Toastify
+- **Authentication Client:** Firebase Authentication SDK
 
-Notifications: React Toastify
+### Backend
+- **Runtime / Framework:** Node.js + Express
+- **Database:** PostgreSQL 15
+- **Authentication:** Firebase Admin SDK (token verification)
+- **Session Management:** JSON Web Tokens (JWT)
+- **Security:** Helmet, CORS, sanitize-html
+- **Validation:** express-validator
+- **Password Management:** Firebase (bcrypt)
+- **Image Storage:** Cloudinary
 
-Authentication Client: Firebase Authentication SDK
+---
 
-Backend
-Framework: Node.js with Express
+## 📂 Folder Structure
 
-Database: PostgreSQL 15
-
-Authentication: Firebase Admin SDK (for token verification)
-
-Session Management: JSON Web Tokens (JWT)
-
-Security: Helmet, CORS, sanitize-html
-
-Validation: express-validator
-
-Password Management: Handled by Firebase (bcrypt)
-
-External Services
-Authentication: Google Firebase (Email/Password)
-
-Image Storage: Cloudinary (for company logos and banners)
-
-3. Project Structure
-This project is structured as a monorepo, with the frontend and backend codebases kept separate within a single root directory for easy management.
-
-├── .gitignore          # Specifies files and folders to be ignored by Git
-├── README.md           # This file
+```text
+company-registration-verification/
+├── .gitignore
+├── README.md
+│
 ├── company-verification-backend/
-│   ├── .env            # Backend environment variables
-│   ├── package.json    # Backend dependencies
-│   ├── server.js       # Main backend server entry point
+│   ├── .env                 # Backend environment variables
+│   ├── package.json         # Backend dependencies
+│   ├── server.js            # Main backend entry point
 │   └── backend/
 │       ├── config/
+│       │   └── serviceAccountKey.json  # Firebase service account (local only)
 │       ├── controllers/
 │       ├── middlewares/
 │       ├── routes/
 │       └── utils/
+│
 └── company-verification-frontend/
-    ├── .env.local      # Frontend environment variables
-    ├── package.json    # Frontend dependencies
-    ├── index.html      # Main HTML entry point
+    ├── .env.local           # Frontend environment variables
+    ├── package.json         # Frontend dependencies
+    ├── index.html           # Main HTML entry
     └── src/
         ├── api/
         ├── app/
@@ -70,66 +71,61 @@ This project is structured as a monorepo, with the frontend and backend codebase
         ├── features/
         ├── pages/
         └── ...
-4. Setup and Installation
-To run this project locally, you will need to set up both the backend and frontend servers.
-
-Backend Setup
-Navigate to the backend directory:
+```
+⚙️ Setup & Installation
+1️⃣ Backend Setup
 cd company-verification-backend
-
-Install dependencies:
-
 npm install
 
-Set up Environment Variables: Create a file named .env in the company-verification-backend root and add the following variables:
 
-# Server Configuration
+Create a .env file in company-verification-backend/:
+
+# Server
 PORT=5000
 
-# Firebase Admin SDK Credentials Path
+# Firebase Admin SDK
 GOOGLE_APPLICATION_CREDENTIALS=./backend/config/serviceAccountKey.json
 
-# Database Configuration (replace with your details)
+# Database
 DB_URL=postgresql://YOUR_USER:YOUR_PASSWORD@YOUR_HOST:5432/YOUR_DB_NAME
 
-# JSON Web Token (JWT) Configuration
+# JWT
 JWT_SECRET=your_super_secret_and_long_jwt_key
 JWT_EXPIRES_IN=90d
 
-Set up Firebase Service Account:
 
-Go to your Firebase Project Settings > Service accounts.
+Firebase Service Account
 
-Generate a new private key and download the JSON file.
+Firebase Console → Project Settings → Service accounts.
 
-Rename the file to serviceAccountKey.json and place it inside the company-verification-backend/backend/config/ directory.
+Generate a private key, rename to serviceAccountKey.json.
 
-Set up PostgreSQL Database:
+Place it in backend/config/.
 
-Ensure PostgreSQL is installed and running.
+PostgreSQL Database
 
-Create a new database (e.g., company_module).
+Ensure PostgreSQL is running.
 
-Run the SQL script located in the project's root to create the necessary tables.
+Create a new database, e.g. company_module.
 
-Run the backend server:
+Run the provided SQL schema to create tables.
+
+Start the backend:
 
 npm run dev
 
-The server will be running on http://localhost:5000.
 
-Frontend Setup
-Navigate to the frontend directory:
+Backend runs at http://localhost:5000
+.
 
+2️⃣ Frontend Setup
 cd company-verification-frontend
-
-Install dependencies:
-
 npm install
 
-Set up Environment Variables: Create a file named .env.local in the company-verification-frontend root and add the following variables:
 
-# Firebase Configuration (get these from your Firebase project settings)
+Create a .env.local file in company-verification-frontend/:
+
+# Firebase Config
 VITE_FIREBASE_API_KEY="your_api_key"
 VITE_FIREBASE_AUTH_DOMAIN="your_auth_domain"
 VITE_FIREBASE_PROJECT_ID="your_project_id"
@@ -137,50 +133,53 @@ VITE_FIREBASE_STORAGE_BUCKET="your_storage_bucket"
 VITE_FIREBASE_MESSAGING_SENDER_ID="your_sender_id"
 VITE_FIREBASE_APP_ID="your_app_id"
 
-# Backend API URL
+# Backend API
 VITE_API_BASE_URL=http://localhost:5000/api
 
-# Cloudinary Configuration
+# Cloudinary
 VITE_CLOUDINARY_CLOUD_NAME="your_cloud_name"
 VITE_CLOUDINARY_UPLOAD_PRESET="your_upload_preset"
 
-Run the frontend server:
+
+Start the frontend:
 
 npm run dev
 
 
+Frontend is accessible at http://localhost:3000
+ (or next available port).
+ 
 
-The application will be accessible at http://localhost:3000 (or another port if 3000 is busy).
+🔐 Authentication Flow
 
-Authentication Flow
-The application uses a secure, two-token system for authentication.
+Registration
 
-Registration:
+Frontend sends email & password to Firebase Authentication.
 
-The frontend sends the user's email and password to Firebase Authentication.
+Firebase creates the user and emails verification.
 
-Firebase creates the user and sends a verification email.
+Frontend posts user details + firebase_uid to /api/auth/register.
 
-The frontend then sends the user's details (including the firebase_uid) to our backend's /api/auth/register endpoint to be saved in the PostgreSQL database.
+Backend stores user in PostgreSQL.
 
-Login:
 
-The frontend sends the user's email and password to Firebase Authentication.
+Login
 
-If successful, Firebase returns a short-lived ID Token to the frontend.
+Frontend sends credentials to Firebase.
 
-The frontend sends this ID Token to our backend's /api/auth/login endpoint.
+Firebase returns a short-lived ID Token.
 
-The backend decodes this ID Token to get the user's firebase_uid.
+Frontend sends ID Token to /api/auth/login.
 
-It then finds the user in our PostgreSQL database and generates our own long-lived (90-day) JWT.
+Backend verifies ID Token → retrieves firebase_uid.
 
-This JWT is sent back to the frontend.
+Backend issues a 90-day JWT.
 
-Protected Routes:
+Frontend stores JWT (Redux + Local Storage).
 
-The frontend stores this JWT in Redux and Local Storage.
+Protected Routes
 
-For every subsequent request to a protected API route (e.g., getting company profiles), the frontend includes this JWT in the Authorization: Bearer [token] header.
+Every API request includes Authorization: Bearer <JWT>.
 
-The backend's protect middleware intercepts every request, verifies the JWT, and identifies the user, ensuring the routes are secure.
+Backend middleware verifies JWT and identifies the user.
+
