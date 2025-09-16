@@ -149,7 +149,7 @@ npm run dev
 Frontend is accessible at http://localhost:3000
  (or next available port).
  
-
+---
 🔐 Authentication Flow
 
 Registration
@@ -162,7 +162,7 @@ Frontend posts user details + firebase_uid to /api/auth/register.
 
 Backend stores user in PostgreSQL.
 
-
+---
 Login
 
 Frontend sends credentials to Firebase.
